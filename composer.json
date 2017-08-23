@@ -1,5 +1,5 @@
 {
-    "name": "chibko/xbootstrap",
+    "name": "Chibko/contao-bootstrap",
     "description": "Extend Contao with Bootstrap framwork",
     "keywords": ["contao", "bootstrap"],
     "type": "contao-module",
