@@ -17,8 +17,8 @@ ClassLoader::addClasses(array
 	
     //'xbootstrap\LazySizes' => 'system/modules/xbootstrap/classes/LazySizes.php',
     
-	'Xbootstrap\Controller' => 'system/modules/xbootstrap/library/Contao/Controller.php',
-    'Xbootstrap\Hooks' => 'system/modules/xbootstrap/classes/Hooks.php',
+	'Xbootstrap\Controller' => 'system/modules/xbootstrap/library/Xbootstrap/Controller.php',
+    'Xbootstrap\Hooks' => 'system/modules/xbootstrap/library/Xbootstrap/classes/Hooks.php',
     
 	// Elements
 	'Xbootstrap\ContentLigneStart' => 'system/modules/xbootstrap/elements/ContentLigneStart.php',

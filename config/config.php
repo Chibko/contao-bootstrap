@@ -24,6 +24,6 @@ $GLOBALS['TL_WRAPPERS']['stop'][]='colStop';
 
 if (TL_MODE == 'FE')
 {
-	$GLOBALS['TL_HOOKS']['generatePage'][] = array('Hooks','myGeneratePage');
-    $GLOBALS['TL_HOOKS']['parseTemplate'][] = array('Hooks', 'pictureDefault');
+	$GLOBALS['TL_HOOKS']['generatePage'][] = array('Xbootstrap\Hooks','myGeneratePage');
+    $GLOBALS['TL_HOOKS']['parseTemplate'][] = array('Xbootstrap\Hooks', 'pictureDefault');
 }
