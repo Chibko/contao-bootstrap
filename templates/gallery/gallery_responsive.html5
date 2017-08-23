@@ -1,0 +1,61 @@
+<?php
+switch ($this->perRow) {
+    case "1" :
+        $row=12;
+        $row_SM=12;
+        $row_XS=12;
+        break;
+    case "2" :
+        $row=6;
+        $row_SM=6;
+        $row_XS=6;
+        break;
+    case "3" :
+        $row=4;
+        $row_SM=4;
+        $row_XS=6;
+        break;
+    case "4" :
+        $row=3;
+        $row_SM=3;
+        $row_XS=6;
+        break;
+    case "6" :
+        $row=2;
+        $row_SM=4;
+        $row_XS=6;
+        break;
+}
+
+
+$cols="col-xs-".$row_XS." col-sm-".$row_SM." col-md-".$row;
+
+
+?>
+
+<div class="cols_<?= $this->perRow ?> row" itemscope itemtype="http://schema.org/ImageGallery">
+  <?php foreach ($this->body as $class=>$row): ?>
+    <?php foreach ($row as $col): ?>
+      <?php if ($col->addImage): ?>
+        <div class="<?= $cols ?>">
+          <?php
+       $picture = $col->picture;
+       $picture['responsive']=1;
+       $picture['cssimage']='thumbnail';
+       $picture['lazy']=$this->lazyCheckbox;
+     ?>
+          <figure class="image_container"<?php if ($col->margin): ?> style="<?= $col->margin ?>"<?php endif; ?> itemscope itemtype="http://schema.org/ImageObject">
+            <?php if ($col->href): ?>
+              <a href="<?= $col->href ?>"<?= $col->attributes ?> title="<?= $col->alt ?>"  itemprop="contentUrl"><?php $this->insert('picture_default', $col->picture); ?></a>
+            <?php else: ?>
+              <?php $this->insert('picture_default', $col->picture); ?>
+            <?php endif; ?>
+            <?php if ($col->caption): ?>
+               <figcaption class="caption" itemprop="caption"><?= $col->caption ?></figcaption>
+            <?php endif; ?>
+          </figure>
+        </div>
+      <?php endif; ?>
+    <?php endforeach; ?>
+  <?php endforeach; ?>
+</div>

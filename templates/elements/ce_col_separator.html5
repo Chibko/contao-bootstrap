@@ -1,0 +1,6 @@
+<?php if ($this->bootstrap_clearfix) : ?>
+<div class="clearfix <?php echo $this->class; ?>"></div>
+<?php endif; ?>
+<?php if ($this->bootstrap_separation) : ?>
+<hr class="<?php echo $this->class; ?>">
+<?php endif; ?>

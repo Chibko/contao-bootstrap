@@ -1,0 +1,7 @@
+
+<div class="<?= $this->class ?> alert alert-<?= $this->styleBootstrap ?> block"<?= $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
+
+  <?php $this->block('content'); ?>
+  <?php $this->endblock(); ?>
+
+</div>

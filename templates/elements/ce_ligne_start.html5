@@ -1,0 +1,11 @@
+<?php 
+$spaces = deserialize($this->space);
+$spaceBefore = $spaces[0];
+$spaceAfter = $spaces[1];
+?>
+<div <?= $this->cssID ?> class="row<?php echo $class; ?> <?php echo $this->class; ?>"
+<?php if ($spaceBefore || $spaceAfter) : ?>
+style="<?php if ($spaceBefore) { echo "margin-top:".$spaceBefore.";"; } ?><?php if ($spaceAfter) { echo "margin-bottom:".$spaceAfter.";"; } ?>
+"
+<?php endif;?>
+>

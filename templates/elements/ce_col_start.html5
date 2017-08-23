@@ -1,0 +1,46 @@
+<?php 
+$spaces = deserialize($this->space);
+$spaceBefore = $spaces[0];
+$spaceAfter = $spaces[1];
+
+$class="";
+if ($this->bootstrap_cols) :
+	$col1=deserialize($this->bootstrap_cols);
+	if (is_numeric($col1[0])) { $class.=" col-xs-".$col1[0];}
+	if (is_numeric($col1[1])) { $class.=" col-sm-".$col1[1];}
+	if (is_numeric($col1[2])) { $class.=" col-md-".$col1[2];}
+	if (is_numeric($col1[3])) { $class.=" col-lg-".$col1[3];}
+endif;
+
+if ($this->bootstrap_cols_offset) :
+	$col2=deserialize($this->bootstrap_cols_offset);
+	if (is_numeric($col2[0])) { $class.=" col-xs-offset-".$col2[0];}
+	if (is_numeric($col2[1])) { $class.=" col-sm-offset-".$col2[1];}
+	if (is_numeric($col2[2])) { $class.=" col-md-offset-".$col2[2];}
+	if (is_numeric($col2[3])) { $class.=" col-lg-offset-".$col2[3];}
+    
+endif;
+
+if ($this->bootstrap_cols_push) :
+	$col3=deserialize($this->bootstrap_cols_push);
+	if (is_numeric($col3[0])) { $class.=" col-xs-push-".$col3[0];}
+	if (is_numeric($col3[1])) { $class.=" col-sm-push-".$col3[1];}
+	if (is_numeric($col3[2])) { $class.=" col-md-push-".$col3[2];}
+	if (is_numeric($col3[3])) { $class.=" col-lg-push-".$col3[3];}
+endif;
+
+if ($this->bootstrap_cols_pull) :
+	$col4=deserialize($this->bootstrap_cols_pull);
+	if (is_numeric($col4[0])) { $class.=" col-xs-pull-".$col4[0];}
+	if (is_numeric($col4[1])) { $class.=" col-sm-pull-".$col4[1];}
+	if (is_numeric($col4[2])) { $class.=" col-md-pull-".$col4[2];}
+	if (is_numeric($col4[3])) { $class.=" col-lg-pull-".$col4[3];}
+endif;
+
+?>
+<div <?= $this->cssID ?> class="<?php echo $class; ?> <?php echo $this->class; ?>"
+<?php if ($spaceBefore || $spaceAfter) : ?>
+style="<?php if ($spaceBefore) { echo "margin-top:".$spaceBefore.";"; } ?><?php if ($spaceAfter) { echo "margin-bottom:".$spaceAfter.";"; } ?>
+"
+<?php endif;?>
+>

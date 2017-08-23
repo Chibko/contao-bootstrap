@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="<?= $this->language ?>"<?php if ($this->isRTL): ?> dir="rtl"<?php endif; ?>>
+<head>
+
+  <?php $this->block('head'); ?>
+    <meta charset="<?= $this->charset ?>">
+    <title><?= $this->title ?></title>
+    <base href="<?= $this->base ?>">
+
+    <?php $this->block('meta'); ?>
+      <meta name="robots" content="<?= $this->robots ?>">
+      <meta name="description" content="<?= $this->description ?>">
+      <meta name="keywords" content="<?= $this->keywords ?>">
+      <meta name="generator" content="Contao Open Source CMS">
+    <?php $this->endblock(); ?>
+
+    <?= $this->viewport ?>
+    <?= $this->mooScripts ?>
+    <?= $this->framework ?>
+    <?= $this->head ?>
+    <style type="text/css">
+a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+body {-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}a:focus{outline:0;}
+figure{position:relative;}
+.float_left{float:left}.float_right{float:right}.block{overflow:hidden}.clear,#clear{height:.1px;font-size:.1px;line-height:.1px;clear:both}.invisible{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.custom{display:block}
+blockquote,q{quotes:none}abbr,acronym{font-variant:normal;border-bottom:1px dotted #666;cursor:help}blockquote,q{quotes:none}del{text-decoration:line-through}ins{text-decoration:none}
+.blur-up{-webkit-filter: blur(8px);filter: blur(8px);transition: filter 400ms, -webkit-filter 400ms;}.blur-up.lazyloaded{-webkit-filter: blur(0);filter: blur(0);}
+h1,h2,h3,h4,h5,h6{margin-top:1em; margin-bottom:0.5em;font-size:100%;font-weight:400}pre,blockquote,table,ol,ul,form{margin-bottom:1em}
+        #loader{}        
+    </style>
+    <?php $this->block('html5shiv'); ?>
+      <!--[if lt IE 9]>
+      <script src="<?= TL_ASSETS_URL ?>assets/html5shiv/<?= $GLOBALS['TL_ASSETS']['HTML5SHIV'] ?>/html5shiv-printshiv.min.js"></script>
+      <script src="<?= TL_ASSETS_URL ?>assets/respond/respond.min.js"></script>
+      <![endif]-->
+    <?php $this->endblock(); ?>
+  <?php $this->endblock(); ?>
+
+</head>
+<body id="top" class="{{ua::class}}<?php if ($this->class) echo ' ' . $this->class; ?>"<?php if ($this->onload): ?> onload="<?= $this->onload ?>"<?php endif; ?> itemscope itemtype="http://schema.org/WebPage">
+
+  <?php $this->block('body'); ?>
+    <?php $this->sections('top'); ?>
+
+    <div id="wrapper">
+
+      <?php $this->block('header'); ?>
+        <?php if ($this->header): ?>
+          <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+            <div class="inside">
+              <?= $this->header ?>
+            </div>
+          </header>
+        <?php endif; ?>
+      <?php $this->endblock(); ?>
+
+      <?php $this->sections('before'); ?>
+
+      <?php $this->block('container'); ?>
+        <div id="container">
+
+          <?php $this->block('main'); ?>
+            <main id="main" itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage">
+              <div class="inside">
+                <?= $this->main ?>
+              </div>
+              <?php $this->sections('main'); ?>
+            </main>
+          <?php $this->endblock(); ?>
+
+          <?php $this->block('left'); ?>
+            <?php if ($this->left): ?>
+              <aside id="left">
+                <div class="inside">
+                  <?= $this->left ?>
+                </div>
+              </aside>
+            <?php endif; ?>
+          <?php $this->endblock(); ?>
+
+          <?php $this->block('right'); ?>
+            <?php if ($this->right): ?>
+              <aside id="right">
+                <div class="inside">
+                  <?= $this->right ?>
+                </div>
+              </aside>
+            <?php endif; ?>
+          <?php $this->endblock(); ?>
+
+        </div>
+      <?php $this->endblock(); ?>
+
+      <?php $this->sections('after'); ?>
+
+      <?php $this->block('footer'); ?>
+        <?php if ($this->footer): ?>
+          <footer id="footer" itemscope itemtype="http://schema.org/WPFooter">
+            <div class="inside">
+              <?= $this->footer ?>
+            </div>
+          </footer>
+        <?php endif; ?>
+      <?php $this->endblock(); ?>
+
+    </div>
+
+    <?php $this->sections('bottom'); ?>
+  <?php $this->endblock(); ?>
+  
+  
+  <?= $this->stylesheets ?>
+  <? /* Pour charger d'autres css :
+  $GLOBALS['TL_CSS'][]="mycss.css|static";
+  */
+  ?>
+  
+  <?= $this->javascript ?>
+  <?php
+  /* Pour charger d'autres script :
+  $GLOBALS['TL_JAVASCRIPT'][]="assets/dotdotdot/jquery.dotdotdot.min.js|static";
+  */
+  ?>
+  <?= $this->mootools ?>
+
+<?php global $objPage; 
+$rootId=$objPage->rootId;
+$rootDescription=\PageModel::findWithDetails($rootId)->description;
+?>
+<script type="application/ld+json">
+    {  "@context" : "http://schema.org",
+       "@type" : "WebSite",
+       "name" : "{{page::rootTitle}}",
+       "Description" : "<?= $rootDescription ?>",
+       "url" : "{{env::path}}"
+    }
+</script>
+
+</body>
+</html>
