@@ -1,6 +1,6 @@
 <?php
 
-namespace xbootstrap;
+namespace Xbootstrap;
 
 class Hooks {
 

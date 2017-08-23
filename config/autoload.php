@@ -7,7 +7,7 @@
  * Register PSR-0 namespaces
  */
 if (class_exists('NamespaceClassLoader')) {
-    NamespaceClassLoader::add('Xboostrap', 'system/modules/xboostrap/library');
+    NamespaceClassLoader::add('Xbootstrap', 'system/modules/xbootstrap/library');
 }
 
 
@@ -17,29 +17,29 @@ ClassLoader::addClasses(array
 	
     //'xbootstrap\LazySizes' => 'system/modules/xbootstrap/classes/LazySizes.php',
     
-	'Controller' => 'system/modules/xbootstrap/library/Contao/Controller.php',
-    'Hooks' => 'system/modules/xbootstrap/classes/Hooks.php',
+	'Xbootstrap\Controller' => 'system/modules/xbootstrap/library/Contao/Controller.php',
+    'Xbootstrap\Hooks' => 'system/modules/xbootstrap/classes/Hooks.php',
     
 	// Elements
-	'ContentLigneStart' => 'system/modules/xbootstrap/elements/ContentLigneStart.php',
-	'ContentLigneStop' => 'system/modules/xbootstrap/elements/ContentLigneStop.php',
-    'ContentColStart' => 'system/modules/xbootstrap/elements/ContentColStart.php',
-	'ContentColStop' =>'system/modules/xbootstrap/elements/ContentColStop.php',
-	'ContentColSeparator' => 'system/modules/xbootstrap/elements/ContentColSeparator.php',
-    'ContentAlert' => 'system/modules/xbootstrap/elements/ContentAlert.php',
+	'Xbootstrap\ContentLigneStart' => 'system/modules/xbootstrap/elements/ContentLigneStart.php',
+	'Xbootstrap\ContentLigneStop' => 'system/modules/xbootstrap/elements/ContentLigneStop.php',
+    'Xbootstrap\ContentColStart' => 'system/modules/xbootstrap/elements/ContentColStart.php',
+	'Xbootstrap\ContentColStop' =>'system/modules/xbootstrap/elements/ContentColStop.php',
+	'Xbootstrap\ContentColSeparator' => 'system/modules/xbootstrap/elements/ContentColSeparator.php',
+    'Xbootstrap\ContentAlert' => 'system/modules/xbootstrap/elements/ContentAlert.php',
     
     //'xbootstrap\ContentElement' => 'system/modules/xbootstrap/elements/ContentElement.php',
     //'xbootstrap\Hybrid' => 'system/modules/xbootstrap/classes/Hybrid.php',
     //'xbootstrap\Module' => 'system/modules/xbootstrap/modules/Module.php',
 	
-    'FormCaptcha' => 'system/modules/xbootstrap/forms/FormCaptcha.php',
-	'FormCheckBox' => 'system/modules/xbootstrap/forms/FormCheckBox.php',
-	'FormPassword' => 'system/modules/xbootstrap/forms/FormPassword.php',
-    'FormRadioButton' => 'system/modules/xbootstrap/forms/FormRadioButton.php',
-    'FormSelectMenu' => 'system/modules/xbootstrap/forms/FormSelectMenu.php',
-    'FormSubmit' => 'system/modules/xbootstrap/forms/FormSubmit.php',
-	'FormTextField' => 'system/modules/xbootstrap/forms/FormTextField.php',
-	'FormTextArea' => 'system/modules/xbootstrap/forms/FormTextArea.php',
+    'Xbootstrap\FormCaptcha' => 'system/modules/xbootstrap/forms/FormCaptcha.php',
+	'Xbootstrap\FormCheckBox' => 'system/modules/xbootstrap/forms/FormCheckBox.php',
+	'Xbootstrap\FormPassword' => 'system/modules/xbootstrap/forms/FormPassword.php',
+    'Xbootstrap\FormRadioButton' => 'system/modules/xbootstrap/forms/FormRadioButton.php',
+    'Xbootstrap\FormSelectMenu' => 'system/modules/xbootstrap/forms/FormSelectMenu.php',
+    'Xbootstrap\FormSubmit' => 'system/modules/xbootstrap/forms/FormSubmit.php',
+	'Xbootstrap\FormTextField' => 'system/modules/xbootstrap/forms/FormTextField.php',
+	'Xbootstrap\FormTextArea' => 'system/modules/xbootstrap/forms/FormTextArea.php',
     
 ));
 
