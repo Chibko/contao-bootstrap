@@ -1,6 +1,6 @@
 {
     "name": "chibko/xbootstrap",
-    "description": "Extend Contao with Bootstrap",
+    "description": "Extend Contao with Bootstrap framwork",
     "keywords": ["contao", "bootstrap"],
     "type": "contao-module",
     "license": "LGPL-3.0+",
