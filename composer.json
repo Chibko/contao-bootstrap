@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
     "name": "chibko/contao-bootstrap",
+=======
+    "name": "Chibko/contao-bootstrap",
+>>>>>>> 65d38ae8ee2fa476be356fdda70143f8113fcae8
     "description": "Extend Contao with Bootstrap framwork",
     "keywords": ["contao", "bootstrap"],
     "type": "contao-module",
