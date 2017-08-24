@@ -6,7 +6,7 @@
 
 // Palettes de base modifiées
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['addImage'] = str_replace('floating','floating,imgresponsive,lazyCheckbox,cssimage',$GLOBALS['TL_DCA']['tl_content']['subpalettes']['addImage']);
-$GLOBALS['TL_DCA']['tl_content']['palettes']['image'] = str_replace('caption;{template_legend:hide}','caption,cssimage,imgresponsive,lazyCheckbox;{template_legend:hide};',$GLOBALS['TL_DCA']['tl_content']['palettes']['image']);
+$GLOBALS['TL_DCA']['tl_content']['palettes']['image'] = str_replace(';{template_legend:hide}',',cssimage,imgresponsive,lazyCheckbox;{template_legend:hide};',$GLOBALS['TL_DCA']['tl_content']['palettes']['image']);
 $GLOBALS['TL_DCA']['tl_content']['palettes']['gallery'] = str_replace('metaIgnore;','metaIgnore,lazyCheckbox;',$GLOBALS['TL_DCA']['tl_content']['palettes']['gallery']);
 
 // Palettes pour les colonnes
