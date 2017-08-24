@@ -2,44 +2,40 @@
 /**
  * Register the classes
  */
-
-/**
- * Register PSR-0 namespaces
- */
-if (class_exists('NamespaceClassLoader')) {
-    NamespaceClassLoader::add('Xbootstrap', 'system/modules/xbootstrap/library');
-}
-
+ 
+ClassLoader::addNamespaces(array(
+'xBootstrap')
+);
 
 
 ClassLoader::addClasses(array
 (
 	
-    //'xbootstrap\LazySizes' => 'system/modules/xbootstrap/classes/LazySizes.php',
+    //'xBootstrap\LazySizes' => 'system/modules/xBootstrap/classes/LazySizes.php',
     
-	'Xbootstrap\Controller' => 'system/modules/xbootstrap/library/Xbootstrap/Controller.php',
-    'Xbootstrap\Hooks' => 'system/modules/xbootstrap/library/Xbootstrap/classes/Hooks.php',
+	'xBootstrap\Controller' => 'system/modules/xBootstrap/library/Contao/Controller.php',
+    'xBootstrap\Hooks' => 'system/modules/xBootstrap/classes/Hooks.php',
     
 	// Elements
-	'Xbootstrap\ContentLigneStart' => 'system/modules/xbootstrap/elements/ContentLigneStart.php',
-	'Xbootstrap\ContentLigneStop' => 'system/modules/xbootstrap/elements/ContentLigneStop.php',
-    'Xbootstrap\ContentColStart' => 'system/modules/xbootstrap/elements/ContentColStart.php',
-	'Xbootstrap\ContentColStop' =>'system/modules/xbootstrap/elements/ContentColStop.php',
-	'Xbootstrap\ContentColSeparator' => 'system/modules/xbootstrap/elements/ContentColSeparator.php',
-    'Xbootstrap\ContentAlert' => 'system/modules/xbootstrap/elements/ContentAlert.php',
+	'xBootstrap\ContentLigneStart' => 'system/modules/xBootstrap/elements/ContentLigneStart.php',
+	'xBootstrap\ContentLigneStop' => 'system/modules/xBootstrap/elements/ContentLigneStop.php',
+    'xBootstrap\ContentColStart' => 'system/modules/xBootstrap/elements/ContentColStart.php',
+	'xBootstrap\ContentColStop' =>'system/modules/xBootstrap/elements/ContentColStop.php',
+	'xBootstrap\ContentColSeparator' => 'system/modules/xBootstrap/elements/ContentColSeparator.php',
+    'xBootstrap\ContentAlert' => 'system/modules/xBootstrap/elements/ContentAlert.php',
     
-    //'xbootstrap\ContentElement' => 'system/modules/xbootstrap/elements/ContentElement.php',
-    //'xbootstrap\Hybrid' => 'system/modules/xbootstrap/classes/Hybrid.php',
-    //'xbootstrap\Module' => 'system/modules/xbootstrap/modules/Module.php',
+    //'xBootstrap\ContentElement' => 'system/modules/xBootstrap/elements/ContentElement.php',
+    //'xBootstrap\Hybrid' => 'system/modules/xBootstrap/classes/Hybrid.php',
+    //'xBootstrap\Module' => 'system/modules/xBootstrap/modules/Module.php',
 	
-    'Xbootstrap\FormCaptcha' => 'system/modules/xbootstrap/forms/FormCaptcha.php',
-	'Xbootstrap\FormCheckBox' => 'system/modules/xbootstrap/forms/FormCheckBox.php',
-	'Xbootstrap\FormPassword' => 'system/modules/xbootstrap/forms/FormPassword.php',
-    'Xbootstrap\FormRadioButton' => 'system/modules/xbootstrap/forms/FormRadioButton.php',
-    'Xbootstrap\FormSelectMenu' => 'system/modules/xbootstrap/forms/FormSelectMenu.php',
-    'Xbootstrap\FormSubmit' => 'system/modules/xbootstrap/forms/FormSubmit.php',
-	'Xbootstrap\FormTextField' => 'system/modules/xbootstrap/forms/FormTextField.php',
-	'Xbootstrap\FormTextArea' => 'system/modules/xbootstrap/forms/FormTextArea.php',
+    'xBootstrap\FormCaptcha' => 'system/modules/xBootstrap/forms/FormCaptcha.php',
+	'xBootstrap\FormCheckBox' => 'system/modules/xBootstrap/forms/FormCheckBox.php',
+	'xBootstrap\FormPassword' => 'system/modules/xBootstrap/forms/FormPassword.php',
+    'xBootstrap\FormRadioButton' => 'system/modules/xBootstrap/forms/FormRadioButton.php',
+    'xBootstrap\FormSelectMenu' => 'system/modules/xBootstrap/forms/FormSelectMenu.php',
+    'xBootstrap\FormSubmit' => 'system/modules/xBootstrap/forms/FormSubmit.php',
+	'xBootstrap\FormTextField' => 'system/modules/xBootstrap/forms/FormTextField.php',
+	'xBootstrap\FormTextArea' => 'system/modules/xBootstrap/forms/FormTextArea.php',
     
 ));
 
@@ -49,37 +45,37 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-    'fe_page'  => 'system/modules/xbootstrap/templates/frontend',
+    'fe_page'  => 'system/modules/xBootstrap/templates/frontend',
 	
-	'block_alert'  => 'system/modules/xbootstrap/templates/block',
+	'block_alert'  => 'system/modules/xBootstrap/templates/block',
     
-    'ce_ligne_start'  => 'system/modules/xbootstrap/templates/elements',
-	'ce_ligne_stop'   => 'system/modules/xbootstrap/templates/elements',
-    'ce_col_start'  => 'system/modules/xbootstrap/templates/elements',
-	'ce_col_stop'   => 'system/modules/xbootstrap/templates/elements',
-	'ce_col_separator'   => 'system/modules/xbootstrap/templates/elements',
-	'ce_image'  => 'system/modules/xbootstrap/templates/elements',
-	'ce_text'  => 'system/modules/xbootstrap/templates/elements',
-    'ce_hyperlink_image'  => 'system/modules/xbootstrap/templates/elements',
-    'ce_alert'  => 'system/modules/xbootstrap/templates/elements',
+    'ce_ligne_start'  => 'system/modules/xBootstrap/templates/elements',
+	'ce_ligne_stop'   => 'system/modules/xBootstrap/templates/elements',
+    'ce_col_start'  => 'system/modules/xBootstrap/templates/elements',
+	'ce_col_stop'   => 'system/modules/xBootstrap/templates/elements',
+	'ce_col_separator'   => 'system/modules/xBootstrap/templates/elements',
+	'ce_image'  => 'system/modules/xBootstrap/templates/elements',
+	'ce_text'  => 'system/modules/xBootstrap/templates/elements',
+    'ce_hyperlink_image'  => 'system/modules/xBootstrap/templates/elements',
+    'ce_alert'  => 'system/modules/xBootstrap/templates/elements',
     
-    'gallery_default'  => 'system/modules/xbootstrap/templates/gallery',
-    'gallery_responsive'  => 'system/modules/xbootstrap/templates/gallery',
+    'gallery_default'  => 'system/modules/xBootstrap/templates/gallery',
+    'gallery_responsive'  => 'system/modules/xBootstrap/templates/gallery',
 
-	'pagination'   => 'system/modules/xbootstrap/templates/pagination',
+	'pagination'   => 'system/modules/xBootstrap/templates/pagination',
 	
-    'picture_default'  => 'system/modules/xbootstrap/templates/picture',
+    'picture_default'  => 'system/modules/xBootstrap/templates/picture',
     
-    'mod_breadcrumb'  => 'system/modules/xbootstrap/templates/modules',
+    'mod_breadcrumb'  => 'system/modules/xBootstrap/templates/modules',
     
-    'form_captcha'  => 'system/modules/xbootstrap/templates/forms',
-    'form_fieldset'  => 'system/modules/xbootstrap/templates/forms',
-    'form_select'  => 'system/modules/xbootstrap/templates/forms',
-    'form_submit'  => 'system/modules/xbootstrap/templates/forms',
-    'form_textarea'  => 'system/modules/xbootstrap/templates/forms',
-    'form_textfield'  => 'system/modules/xbootstrap/templates/forms',
-    'form_checkbox'  => 'system/modules/xbootstrap/templates/forms',
-    'form_radio'  => 'system/modules/xbootstrap/templates/forms',
-    'form_upload'  => 'system/modules/xbootstrap/templates/forms',
-    'form_password'  => 'system/modules/xbootstrap/templates/forms'
+    'form_captcha'  => 'system/modules/xBootstrap/templates/forms',
+    'form_fieldset'  => 'system/modules/xBootstrap/templates/forms',
+    'form_select'  => 'system/modules/xBootstrap/templates/forms',
+    'form_submit'  => 'system/modules/xBootstrap/templates/forms',
+    'form_textarea'  => 'system/modules/xBootstrap/templates/forms',
+    'form_textfield'  => 'system/modules/xBootstrap/templates/forms',
+    'form_checkbox'  => 'system/modules/xBootstrap/templates/forms',
+    'form_radio'  => 'system/modules/xBootstrap/templates/forms',
+    'form_upload'  => 'system/modules/xBootstrap/templates/forms',
+    'form_password'  => 'system/modules/xBootstrap/templates/forms'
 ));

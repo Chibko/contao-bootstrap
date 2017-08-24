@@ -10,13 +10,8 @@
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 
-namespace Xbootstrap;
+namespace xBootstrap;
 
-use Contao\CoreBundle\Exception\AccessDeniedException;
-use Contao\CoreBundle\Exception\AjaxRedirectResponseException;
-use Contao\CoreBundle\Exception\PageNotFoundException;
-use Contao\CoreBundle\Exception\RedirectResponseException;
-use League\Uri\Components\Query;
 
 /**
  * Extend Contao Controllers
@@ -36,8 +31,7 @@ class Controller extends \Contao\Controller
 	 *
 	 * @return string The string with the replaced tags
 	 */
-	    
-    public static function replaceDynamicScriptTags($strBuffer)
+	public static function replaceDynamicScriptTags($strBuffer)
 	{
 		// HOOK: add custom logic
 		if (isset($GLOBALS['TL_HOOKS']['replaceDynamicScriptTags']) && is_array($GLOBALS['TL_HOOKS']['replaceDynamicScriptTags']))
@@ -48,7 +42,11 @@ class Controller extends \Contao\Controller
 			}
 		}
 
+		/** @var \PageModel $objPage */
+		global $objPage;
+
 		$arrReplace = array();
+		$blnXhtml = ($objPage->outputFormat == 'xhtml');
 		$strScripts = '';
 
 		// Add the internal jQuery scripts
@@ -84,10 +82,25 @@ class Controller extends \Contao\Controller
 			}
 		}
 
-		global $objPage;
+		// Add the syntax highlighter scripts
+		if (!empty($GLOBALS['TL_HIGHLIGHTER']) && is_array($GLOBALS['TL_HIGHLIGHTER']))
+		{
+			$objCombiner = new \Combiner();
 
-		$objLayout = \LayoutModel::findByPk($objPage->layoutId);
-		$blnCombineScripts = ($objLayout === null) ? false : $objLayout->combineScripts;
+			foreach (array_unique($GLOBALS['TL_HIGHLIGHTER']) as $script)
+			{
+				$objCombiner->add($script);
+			}
+
+			$strScripts .= "\n" . \Template::generateScriptTag($objCombiner->getCombinedFile(), $blnXhtml);
+			$strScripts .= "\n" . \Template::generateInlineScript('SyntaxHighlighter.defaults.toolbar=false;SyntaxHighlighter.all()', $blnXhtml) . "\n";
+		}
+
+		// Command scheduler
+		if (!\Config::get('disableCron'))
+		{
+			$strScripts .= "\n" . \Template::generateInlineScript('setTimeout(function(){var e=function(e,t){try{var n=new XMLHttpRequest}catch(r){return}n.open("GET",e,!0),n.onreadystatechange=function(){this.readyState==4&&this.status==200&&typeof t=="function"&&t(this.responseText)},n.send()},t="system/cron/cron.";e(t+"txt",function(n){parseInt(n||0)<Math.round(+(new Date)/1e3)-' . \Frontend::getCronTimeout() . '&&e(t+"php")})},5e3);', $blnXhtml) . "\n";
+		}
 
 		$arrReplace['[[TL_BODY]]'] = $strScripts;
 		$strScripts = '';
@@ -121,7 +134,7 @@ class Controller extends \Contao\Controller
 				}
 				else
 				{
-					$strScripts .= \Template::generateStyleTag(static::addStaticUrlTo($stylesheet), $options->media) . "\n";
+					$strScripts .= \Template::generateStyleTag(static::addStaticUrlTo($stylesheet), $options->media, $blnXhtml) . "\n";
 				}
 			}
 		}
@@ -135,11 +148,16 @@ class Controller extends \Contao\Controller
 
 				if ($options->static)
 				{
+					if ($options->mtime === null)
+					{
+						$options->mtime = filemtime(TL_ROOT . '/' . $stylesheet);
+					}
+
 					$objCombiner->add($stylesheet, $options->mtime, $options->media);
 				}
 				else
 				{
-					$strScripts .= \Template::generateStyleTag(static::addStaticUrlTo($stylesheet), $options->media) . "\n";
+					$strScripts .= \Template::generateStyleTag(static::addStaticUrlTo($stylesheet), $options->media, $blnXhtml) . "\n";
 				}
 			}
 		}
@@ -147,19 +165,7 @@ class Controller extends \Contao\Controller
 		// Create the aggregated style sheet
 		if ($objCombiner->hasEntries())
 		{
-			if ($blnCombineScripts)
-			{
-				$strScripts .= \Template::generateStyleTag($objCombiner->getCombinedFile(), 'all') . "\n";
-			}
-			else
-			{
-				foreach ($objCombiner->getFileUrls() as $strUrl)
-				{
-					list($url, $media) = explode('|', $strUrl);
-
-					$strScripts .= \Template::generateStyleTag($url, $media) . "\n";
-				}
-			}
+			$strScripts .= \Template::generateStyleTag($objCombiner->getCombinedFile(), 'all', $blnXhtml) . "\n";
 		}
 
 		$arrReplace['[[TL_CSS]]'] = $strScripts;
@@ -186,51 +192,25 @@ class Controller extends \Contao\Controller
 				}
 				else
 				{
-					$strScripts .= \Template::generateScriptTag(static::addStaticUrlTo($javascript), $options->async) . "\n";
+					$strScripts .= \Template::generateScriptTag(static::addStaticUrlTo($javascript), $blnXhtml, $options->async) . "\n";
 				}
 			}
 
 			// Create the aggregated script and add it before the non-static scripts (see #4890)
 			if ($objCombiner->hasEntries())
 			{
-				if ($blnCombineScripts)
-				{
-					$strScripts = \Template::generateScriptTag($objCombiner->getCombinedFile()) . "\n" . $strScripts;
-				}
-				else
-				{
-					$arrReversed = array_reverse($objCombiner->getFileUrls());
-
-					foreach ($arrReversed as $strUrl)
-					{
-						$strScripts = \Template::generateScriptTag($strUrl) . "\n" . $strScripts;
-					}
-				}
+				$strScripts = \Template::generateScriptTag($objCombiner->getCombinedFile(), $blnXhtml) . "\n" . $strScripts;
 			}
 
 			if ($objCombinerAsync->hasEntries())
 			{
-				if ($blnCombineScripts)
-				{
-					$strScripts = \Template::generateScriptTag($objCombinerAsync->getCombinedFile(), true) . "\n" . $strScripts;
-				}
-				else
-				{
-					$arrReversed = array_reverse($objCombinerAsync->getFileUrls());
-
-					foreach ($arrReversed as $strUrl)
-					{
-						$strScripts = \Template::generateScriptTag($strUrl, true) . "\n" . $strScripts;
-					}
-				}
+				$strScripts = \Template::generateScriptTag($objCombinerAsync->getCombinedFile(), $blnXhtml, true) . "\n" . $strScripts;
 			}
 		}
         
-        
-        #CUSTOM CHIBKO : Sépare le Javascript du Head
+         #CUSTOM CHIBKO : Sépare le Javascript du Head
         $arrReplace['[[TL_DEFERS]]'] = $strScripts;
         $strScripts='';
-        
         
 		// Add the internal <head> tags
 		if (!empty($GLOBALS['TL_HEAD']) && is_array($GLOBALS['TL_HEAD']))
@@ -245,8 +225,7 @@ class Controller extends \Contao\Controller
 
 		return str_replace(array_keys($arrReplace), array_values($arrReplace), $strBuffer);
 	}
-    
-    
+
     
     
 }

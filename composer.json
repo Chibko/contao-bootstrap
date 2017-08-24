@@ -15,18 +15,13 @@
         "contao/core-bundle": "4.*",
         "contao-community-alliance/composer-plugin": "3.*"
     },
-   "autoload": {
-        "psr-0": {
-            "Xbootstrap\\": "library/"
-        }
-    },
     "replace": {
-        "contao-legacy/xbootstrap": "self.version"
+        "contao-legacy/xBootstrap": "self.version"
     },
     "extra": {
         "contao": {
             "sources": {
-                "": "system/modules/xbootstrap"
+                "": "system/modules/xBootstrap"
             }
         }
     }

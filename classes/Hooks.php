@@ -1,13 +1,13 @@
 <?php
 
-namespace Xbootstrap;
+namespace xBootstrap;
 
 class Hooks {
 
 	public function myGeneratePage($objPage, $objLayout, $objPageRegular) {
 		if ($objLayout->bootstrap) {
-				$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/xbootstrap/assets/js/bootstrap.min.js|static';
-				$GLOBALS['TL_CSS'][] = 'system/modules/xbootstrap/assets/css/bootstrap.min.css|static';
+				$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/xBootstrap/assets/js/bootstrap.min.js|static';
+				$GLOBALS['TL_CSS'][] = 'system/modules/xBootstrap/assets/css/bootstrap.min.css|static';
 		}
 		$strDefersTags = '[[TL_DEFERS]]';
 		if (($strDefers = trim($objLayout->javascript)) != false) {
