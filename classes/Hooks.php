@@ -19,7 +19,7 @@ class Hooks {
     
     public function pictureDefault($objTemplate)
 	{
-        // Si c'est pas une image
+        // Si c'est pas une image ooulala
         if ('picture_default' != $objTemplate->getName()) { return; }
 
 		// récupère les données de l'image
